@@ -28,7 +28,7 @@ const openApiDocument = generateOpenApiDocument(serverRouter, {
   );
 // }
 
-app.use(cookieParser())
+app.use(cookieParser()) // added cookie parser comment
 
 app.use(express.json());
 

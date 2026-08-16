@@ -1,7 +1,7 @@
 import {formsTable} from "@repo/database/models/form"
 import {db, eq} from "@repo/database"
 
-import { createFormInput , type CreateFormInputType } from "./model"
+import { createFormInput , ListFormByUserIdType, listFormsByUserIdInput, type CreateFormInputType } from "./model"
 
 
 export default class FormService { 
@@ -21,5 +21,22 @@ export default class FormService {
         return {
             id: result[0].id
         }
+    }
+
+    public async listFormByUserId(payload: ListFormByUserIdType){
+        const { userId } = await listFormsByUserIdInput.parseAsync(payload)
+
+        const forms = await db
+            .select({
+                id: formsTable.id,
+                title: formsTable.title,    
+                description: formsTable.description,
+                createdAt: formsTable.createdAt,
+                updatedAt: formsTable.updatedAt
+            })
+            .from(formsTable)
+            .where(eq(formsTable.createdBy, userId))
+
+        return forms
     }
  }

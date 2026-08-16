@@ -7,3 +7,11 @@ export const createFormInput = z.object({
 })
 
 export type CreateFormInputType = z.infer<typeof createFormInput>
+
+// listFormByUserId so form we display on dashboard
+
+export const listFormsByUserIdInput = z.object({
+    userId: z.string().describe("UUID of the user")
+})
+
+export type ListFormByUserIdType = z.infer<typeof listFormsByUserIdInput>

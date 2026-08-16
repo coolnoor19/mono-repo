@@ -4,7 +4,7 @@ import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Eye, PencilLine } from "lucide-react";
 
-import { useCreateForm } from "~/hooks/api/form";
+import { useCreateForm , useListForms} from "~/hooks/api/form";
 
 import { Button } from "~/components/ui/button";
 import {
@@ -25,7 +25,7 @@ export default function DashboardForms() {
     const [description, setDescription] = useState("");
 
     const { createFormAsync, error, status } = useCreateForm();
-    // const { forms, isLoading } = useListForms();
+    const { forms, isLoading } = useListForms();
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -108,7 +108,7 @@ export default function DashboardForms() {
                     </Dialog>
                 </div>
 
-                {/* <section className="grid gap-3">
+                <section className="grid gap-3">
                     {isLoading ? (
                         <div className="border border-white/10 bg-white/5 p-6 text-sm text-white/50">
                             Loading forms...
@@ -171,7 +171,7 @@ export default function DashboardForms() {
                             No forms yet.
                         </div>
                     )}
-                </section> */}
+                </section>
             </div>
         </main>
     );

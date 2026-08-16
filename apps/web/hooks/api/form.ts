@@ -1,6 +1,7 @@
 import { trpc } from "~/trpc/client"
 
 export const  useCreateForm = () =>{
+    const utils = trpc.useUtils()
     const { 
         mutateAsync: createFormAsync,
         mutate : createForm ,
@@ -10,7 +11,9 @@ export const  useCreateForm = () =>{
         isIdle,
         isSuccess,
         status,
-    } = trpc.form.createForm.useMutation() // creating a mutation for creating a form, creating something on database
+    } = trpc.form.createForm.useMutation({
+        onSuccess: async() => ( await utils.form.invalidate() )
+    }) // creating a mutation for creating a form, creating something on database
     return {
         createFormAsync,
         createForm ,
@@ -20,5 +23,24 @@ export const  useCreateForm = () =>{
         isIdle,
         isSuccess,
         status,
+    }
+}
+
+export const useListForms = () =>{
+    const { 
+        data : forms,
+        error,
+        isFetched,
+        isFetching,
+        isLoading,
+        status
+    } = trpc.form.listForms.useQuery()
+    return {
+        forms,
+        error,
+        isFetched,
+        isFetching,
+        isLoading,
+        status
     }
 }

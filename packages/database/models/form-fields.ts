@@ -10,7 +10,7 @@ export const fieldTypeEnum = pgEnum( "field_type_enum", [
     "PASSWORD"
 ])
 
-export const formsFields = pgTable("form_fields",{
+export const formFieldsTable = pgTable("form_fields",{
         id: uuid("id").primaryKey().defaultRandom(),
 
         formId: uuid("form_id").references(() =>formsTable.id ),

@@ -15,6 +15,13 @@
       "when": 1786898545366,
       "tag": "0001_natural_northstar",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1786990860996,
+      "tag": "0002_closed_george_stacy",
+      "breakpoints": true
     }
   ]
 }
